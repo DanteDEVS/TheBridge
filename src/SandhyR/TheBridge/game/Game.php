@@ -203,7 +203,7 @@ class Game
                         ScoreFactory::setScoreLine($player, 3, " ");
                         ScoreFactory::setScoreLine($player, 4, TextFormat::RED . "Waiting for more players..");
                         ScoreFactory::setScoreLine($player, 5, "      ");
-                        ScoreFactory::setScoreLine($player, 6, "Mode: " . TextFormat::GREEN . "Solo");
+                        ScoreFactory::setScoreLine($player, 6, "Mode: " . TextFormat::GREEN . "Doubles");
                         ScoreFactory::setScoreLine($player, 7, "    ");
                         ScoreFactory::setScoreLine($player, 8, TextFormat::YELLOW . "play.yourservername.com");
                         ScoreFactory::sendObjective($player);
@@ -220,7 +220,7 @@ class Game
                         ScoreFactory::setScoreLine($player, 3, "    ");
                         ScoreFactory::setScoreLine($player, 4, "Starting in " . TextFormat::GREEN . $this->countdown . "s");
                         ScoreFactory::setScoreLine($player, 5, "  ");
-                        ScoreFactory::setScoreLine($player, 6, "Mode: " . TextFormat::GREEN . "Solo");
+                        ScoreFactory::setScoreLine($player, 6, "Mode: " . TextFormat::GREEN . "Doubles");
                         ScoreFactory::setScoreLine($player, 7, " ");
                         ScoreFactory::setScoreLine($player, 8, TextFormat::YELLOW . "play.yourservername.com");
                         ScoreFactory::sendObjective($player);
@@ -329,7 +329,7 @@ class Game
      */
     public function addPlayer(Player $player): void
     {
-        if (count($this->players) == 2) {
+        if (count($this->players) == 4) {
             return;
         }
         $this->players[strtolower($player->getName())] = $player;
@@ -343,7 +343,7 @@ class Game
         $player->getHungerManager()->setFood(20);
         $player->getInventory()->setItem(8, VanillaItems::WHITE_BED()->setCustomName("Leave"));
         $this->broadcastCustomMessage($player->getName() . " Joined");
-        if (count($this->players) == 2) {
+        if (count($this->players) == 4) {
             $this->phase = "COUNTDOWN";
         }
     }
@@ -459,7 +459,7 @@ class Game
      */
     private function checkCountdown(): void
     {
-        if (count($this->players) < 2) {
+        if (count($this->players) < 4) {
             if ($this->phase == "COUNTDOWN") {
                 $this->phase = "LOBBY";
                 $this->countdown = 15;
