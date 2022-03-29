@@ -1,8 +1,9 @@
-name: TheBridge
+name: TheBridge-2V2
 main: SandhyR\TheBridge\TheBridge
 author: SandhyR
 api: 4.0.0
 version: 1.0
+description: the orignal bridge plugin by sandhyR transfered to 2v2
 
 permissions:
   thebridge.set:
